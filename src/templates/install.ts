@@ -1,3 +1,5 @@
+const DAYS_OF_WEEK = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
 export function renderInstallPage(error?: string): string {
   const webhookSecret = crypto.randomUUID();
 
@@ -136,7 +138,7 @@ export function renderInstallPage(error?: string): string {
       <div class="form-group">
         <label>Preferred Publish Days</label>
         <div class="checkbox-grid">
-          ${["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].map(day => `
+          ${DAYS_OF_WEEK.map(day => `
           <label class="checkbox-item">
             <input type="checkbox" name="publish_days" value="${day.toLowerCase()}" ${day==="Monday"||day==="Thursday"?"checked":""}/>
             ${day}

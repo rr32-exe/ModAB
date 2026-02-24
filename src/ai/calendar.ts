@@ -7,10 +7,14 @@ export async function generateCalendar(
   audience: string,
   articlesPerWeek: number
 ): Promise<ContentCalendarItem[]> {
+  // Target count: articlesPerWeek articles spread across ~30 days
+  const targetCount = Math.round(articlesPerWeek * (30 / 7));
+  // Spacing: days between articles so they distribute evenly across the week
+  const daysBetween = Math.round(7 / articlesPerWeek);
   const prompt = `Create a 30-day content calendar for a ${niche} blog targeting ${audience}.
 Generate ${articlesPerWeek} articles per week.
 
-Return ONLY a valid JSON array (no markdown) with exactly ${Math.ceil((articlesPerWeek / 7) * 30)} items.
+Return ONLY a valid JSON array (no markdown) with exactly ${targetCount} items.
 Each item must follow this structure:
 {
   "date": "YYYY-MM-DD",
@@ -22,7 +26,7 @@ Each item must follow this structure:
 }
 
 Start dates from today: ${new Date().toISOString().split("T")[0]}
-Space articles ${Math.round(7 / articlesPerWeek)} days apart.
+Space articles ${daysBetween} days apart.
 Vary topics to cover different aspects of ${niche}.
 Focus on high search volume, low competition keywords.`;
 

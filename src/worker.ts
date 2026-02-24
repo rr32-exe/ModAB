@@ -28,7 +28,7 @@ app.route("/webhooks", webhookRoutes);
 
 // ─── Scheduled handler ────────────────────────────────────────────────────────
 async function handleScheduled(env: Env): Promise<void> {
-  const today = new Date().toISOString().split("T")[0] as string;
+  const today = new Date().toISOString().split("T")[0] ?? "";
 
   // Fetch calendar items that are queued or scheduled for today
   const items = await listCalendarByDate(env.DB, today);
