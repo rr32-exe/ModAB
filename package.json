@@ -1,0 +1,22 @@
+{
+  "name": "autoblog",
+  "version": "1.0.0",
+  "description": "ModAB – Modular Auto-Blog Platform powered by Cloudflare Workers, Hono and Workers AI",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply autoblog-db --local",
+    "db:migrate": "wrangler d1 migrations apply autoblog-db",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "hono": "^4.4.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240729.0",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.65.1"
+  }
+}
